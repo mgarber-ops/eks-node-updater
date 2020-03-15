@@ -77,11 +77,11 @@ def node_update(node_group, eks_version, node_ami_version):
     updated_node_ami = node_update['update']['params'][1]['value']
     node_update_id   = node_update['update']['id']
     if node_ami_version != updated_node_ami:
-        print ("Executing Update for Node Group: " + node_group + " Parameters: " + "Latest AMI Version: " + updated_node_ami + " EKS Version: " + updated_node_version)
+        print ("Executed Update for Node Group: " + node_group + " Parameters: " + "Latest AMI Version: " + updated_node_ami + " EKS Version: " + updated_node_version)
         print ("Update ID: " + node_update_id)
         node_update_check(node_group, node_update_id, starttime)
     else:
-        print ("Update Cancelled: " + node_group + " Is already running the latest AMI Version: " + updated_node_ami)
+        print (node_group + " Is already running the latest AMI Version: " + updated_node_ami)
         exit(0)
 
 """
@@ -99,6 +99,7 @@ def node_update_check(node_group, node_update_id, starttime):
         print ("Update Complete. Total Duration: " + str(endtime-starttime) + " Seconds")
     elif update_check['update']['status'] == 'Failed' or 'Cancelled':
         print ("Update Failed or Cancelled: " + str(update_check['update']['errors']))
+        exit(1)
     
 if __name__== "__main__":
   main()
