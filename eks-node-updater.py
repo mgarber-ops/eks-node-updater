@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-AUTHOR: Contino
+AUTHOR: Matthew Garber
 PURPOSE: CLI Application to facilitate EKS Managed Node Updates
 """
 
